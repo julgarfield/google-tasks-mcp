@@ -1,0 +1,27 @@
+{
+  "name": "google-tasks-mcp",
+  "version": "1.0.0",
+  "description": "Private read-only MCP server for Google Tasks, for use as a claude.ai custom connector",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "node test/run.mjs"
+  },
+  "dependencies": {
+    "@cloudflare/workers-oauth-provider": "^1.2.4",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.160.1"
+  },
+  "private": true,
+  "type": "module",
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261110.1": true
+  }
+}

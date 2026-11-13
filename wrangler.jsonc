@@ -1,0 +1,25 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "google-tasks-mcp",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-11-01",
+	// Storage for the OAuth provider. Create it with:
+	//   npx wrangler kv namespace create OAUTH_KV
+	// and paste the id it prints here.
+	"kv_namespaces": [
+		{
+			"binding": "OAUTH_KV",
+			"id": "80f30f67481b4307a02ad205fe970a4f"
+		}
+	],
+	// Not secret. The secrets (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, ALLOWED_EMAIL) are set with
+	// `npx wrangler secret put <NAME>` and never appear in this file.
+	"vars": {
+		// The origin this Worker is served from, with no trailing slash and no /mcp.
+		"PUBLIC_URL": "https://google-tasks-mcp.taskbridge-io.workers.dev",
+		// Where MCP clients may send the user back to. These two are Claude's (web, desktop, mobile).
+		"ALLOWED_REDIRECT_URIS": "https://claude.ai/api/mcp/auth_callback,https://claude.com/api/mcp/auth_callback,https://chatgpt.com/connector_platform_oauth_redirect"
+	}
+	// Deliberately no "observability" block: Workers Logs would store request URLs, and the OAuth
+	// callback URLs carry one-time codes.
+}
